@@ -25,12 +25,12 @@ const { viewStyle, textStyle, leftButtonStyle } = styles
 return (
   <View>
     <View style={[viewStyle, {backgroundColor: headerColor }]}>
-    {leftIcon &&
-        <TouchableOpacity onPress={onPress}>
-            <Ionicons name={leftIcon} style={[leftButtonStyle, { paddingLeft: detail ? 10 : 25 }]} color={leftColor} />
-        </TouchableOpacity>
-    }
-    <Text numberOfLines={1} ellipsizeMode="tail" style={[textStyle, { paddingLeft: leftIcon ? 10 : 0 }]}>{title}</Text>
+      {leftIcon &&
+          <TouchableOpacity onPress={onPress}>
+              <Ionicons name={leftIcon} style={[leftButtonStyle, { paddingLeft: detail ? 10 : 25 }]} color={leftColor} />
+          </TouchableOpacity>
+      }
+      <Text numberOfLines={1} ellipsizeMode="tail" style={[textStyle, { paddingLeft: leftIcon ? 10 : 0 }]}>{title}</Text>
     </View>
     {
       searchBar ? <SearchBar

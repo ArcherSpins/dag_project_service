@@ -3,6 +3,7 @@ import { createDrawerNavigator, createAppContainer } from 'react-navigation'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Videos from './components/pages/videos'
 import Books from './components/pages/books'
+import Musics from './components/pages/musics'
 
 
 
@@ -23,6 +24,15 @@ export default createAppContainer(createDrawerNavigator(
         drawerLabel: 'Books',
         drawerIcon: ({ tintColor }) => (
           <MaterialIcons name="favorite" size={24} style={{ color: tintColor }} />
+        )
+      }
+    },
+    "Screen3": {
+      screen: Musics,
+      navigationOptions: {
+        drawerLabel: 'Musics',
+        drawerIcon: ({ tintColor }) => (
+          <MaterialIcons name="music-note" size={24} style={{ color: tintColor }} />
         )
       }
     }
