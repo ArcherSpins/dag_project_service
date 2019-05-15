@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { HeaderProject } from '../../ui-elements/header';
 import Spinner from '../../spinner';
 import { Audio } from 'expo';
@@ -114,6 +114,45 @@ export default class Musics extends React.Component {
                         ]
                     })
                     break;
+                case './musics/eminem_-_rap-god.mp3':
+                    await this.playObject.loadAsync(require('./musics/eminem_-_rap-god.mp3'));
+                    await this.playObject.playAsync();
+                    element.play = true;
+                    this.setState({
+                        play: true,
+                        musics: [
+                            ...musics.slice(0, idx),
+                            element,
+                            ...musics.slice(idx + 1)
+                        ]
+                    })
+                    break;
+                case './musics/skylar-grey_-_i-know-you-from-the-fifty-shades-of-grey.mp3':
+                    await this.playObject.loadAsync(require('./musics/skylar-grey_-_i-know-you-from-the-fifty-shades-of-grey.mp3'));
+                    await this.playObject.playAsync();
+                    element.play = true;
+                    this.setState({
+                        play: true,
+                        musics: [
+                            ...musics.slice(0, idx),
+                            element,
+                            ...musics.slice(idx + 1)
+                        ]
+                    })
+                    break;
+                case './musics/mani-beats_-_why-is-it-me-you-love.mp3':
+                    await this.playObject.loadAsync(require('./musics/mani-beats_-_why-is-it-me-you-love.mp3'));
+                    await this.playObject.playAsync();
+                    element.play = true;
+                    this.setState({
+                        play: true,
+                        musics: [
+                            ...musics.slice(0, idx),
+                            element,
+                            ...musics.slice(idx + 1)
+                        ]
+                    })
+                    break;
                 default: return;
             }
         
@@ -167,12 +206,22 @@ export default class Musics extends React.Component {
                     textValue={this.state.searchText}
                     onClear={this.onClear}
                 />
-                {
-                    this.state.loadingMusics ? <Spinner />
-                    :
-                    <MusicCard musics={this.state.musics} onPlay={this.playMusic} />
-                }
+                <ScrollView>
+                    <View style={styles.container}>
+                        {
+                            this.state.loadingMusics ? <Spinner />
+                            :
+                            <MusicCard musics={this.state.musics} onPlay={this.playMusic} />
+                        }
+                    </View>
+                </ScrollView>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        paddingBottom: 160,
+    }
+})

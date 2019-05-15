@@ -1,5 +1,23 @@
 export default [
     {
+        id: 8,
+        title: 'Mani Beats',
+        time: '3:25',
+        image: 'https://pp.userapi.com/c836520/v836520451/900fb/vBVhWD2upbo.jpg',
+        url: './musics/mani-beats_-_why-is-it-me-you-love.mp3',
+        description: 'Why Is It Me You Love',
+        play: false
+    },
+    {
+        id: 7,
+        title: 'Skylar Grey',
+        time: '4:58',
+        image: 'https://pp.userapi.com/c850616/v850616335/67731/Nojw00HEyAE.jpg',
+        url: './musics/skylar-grey_-_i-know-you-from-the-fifty-shades-of-grey.mp3',
+        description: 'I Know You From The "Fifty Shad..',
+        play: false
+    },
+    {
         id: 1,
         title: 'Natan',
         time: '2:17',
@@ -34,8 +52,7 @@ export default [
         url: './musics/eminem_-_lose-yourself-from-8-mile-soundtrack.mp3',
         description: 'Lose Yourself From "8 Mile" Soundtrack',
         play: false
-    }
-    ,
+    },
     {
         id: 5,
         title: 'Skylar Grey',
@@ -44,5 +61,14 @@ export default [
         url: './musics/skylar-grey_-_words.mp3',
         description: 'Words',
         play: false
-    }
+    },
+    {
+        id: 6,
+        title: 'Eminem',
+        time: '6:03',
+        image: 'https://pp.userapi.com/c847122/v847122724/18b038/ubyDG5KDiKY.jpg',
+        url: './musics/eminem_-_rap-god.mp3',
+        description: 'Rap God',
+        play: false
+    },
 ]
