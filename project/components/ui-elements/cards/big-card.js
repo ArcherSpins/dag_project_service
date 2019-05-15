@@ -5,7 +5,7 @@ const w = Dimensions.get('window').width;
 const ImageBigCard = ({ data }) => {
   const { container, sub, cover } = styles
   const { image } = data
-  const img = `https${image.medium.slice(4)}`
+  const img = image === null ? 'https://fcrmedia.ie/wp-content/themes/fcr/assets/images/default.jpg' : `https${image.medium.slice(4)}`
   return (
     <View style={container}>
       <View style={sub}>
