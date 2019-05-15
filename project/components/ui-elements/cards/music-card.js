@@ -10,30 +10,34 @@ const MusicCard = ({ musics, onPlay }) => {
     return(
         <View>
             {
-                musics.map((obj, i) => (
-                    <View style={styles.subtitleView} key={i}>
-                        <View style={{ width: w / 4, height: 80, position: 'relative' }}>
-                            <TouchableOpacity onPress={() => onPlay(obj.url)}>
-                                <Image
-                                    source={{uri: obj.image}} style={{ width: w / 4, height: 80 }} />
-                                <View style={styles.buttonPlay}>
-                                        <Ionicons name='ios-play' style={{fontSize: 35}} color="black" />
+                musics.map((obj, i) => {
+                    const { play } = obj;
+                    const icon = play ? 'ios-pause' : 'ios-play';
+                    return(
+                        <View style={styles.subtitleView} key={i}>
+                            <View style={{ width: w / 4, height: 80, position: 'relative' }}>
+                                <TouchableOpacity onPress={() => onPlay(obj)}>
+                                    <Image
+                                        source={{uri: obj.image}} style={{ width: w / 4, height: 80 }} />
+                                    <View style={styles.buttonPlay}>
+                                            <Ionicons name={icon} style={{fontSize: 35}} color="black" />
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={[styles.content, styles.border]}>
+                                <View style={styles.content}>
+                                    <View style={styles.header}>
+                                        <Text style={styles.title}>{obj.title}</Text>
+                                        <Text style={styles.rating}>{obj.time}</Text>
+                                    </View>
                                 </View>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={[styles.content, styles.border]}>
-                            <View style={styles.content}>
-                                <View style={styles.header}>
-                                    <Text style={styles.title}>{obj.title}</Text>
-                                    <Text style={styles.rating}>{obj.time}</Text>
+                                <View style={styles.description}>
+                                    <Text>{obj.description}</Text>
                                 </View>
                             </View>
-                            <View style={styles.description}>
-                                <Text>{obj.description}</Text>
-                            </View>
                         </View>
-                    </View>
-                ))
+                    )
+                })
             }
         </View>
     )

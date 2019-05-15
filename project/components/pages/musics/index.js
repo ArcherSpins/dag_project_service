@@ -20,43 +20,102 @@ export default class Musics extends React.Component {
 
 
     stopMusic = async () => {
-        this.setState({play: false})
+        const { musics } = this.state;
+        const newMusics = musics.map(music => {
+            return {
+                ...music,
+                play: false
+            }
+        });
+        // element.play = false;
+        this.setState({
+            play: false,
+            musics: newMusics
+        })
         await this.playObject.stopAsync();
     }
 
-    playMusic = async (url) => {
+    playMusic = async (obj) => {
+        const { url, id } = obj;
+        const element = this.state.musics.find(el => el.id === id);
+        const idx = this.state.musics.findIndex(el => el.id === id);
 
         if(this.state.play) {
-            this.stopMusic();
-
+            await this.stopMusic();
             return;
-        } else {
-            this.playObject = new Audio.Sound();
+        } 
+
+        this.playObject = new Audio.Sound();
+            const { musics } = this.state;
 
             switch(url) {
                 case './musics/natan_-_nalivay.mp3':
                     await this.playObject.loadAsync(require('./musics/natan_-_nalivay.mp3'));
                     await this.playObject.playAsync();
-                    this.setState({play: true})
+                    element.play = true;
+                    this.setState({
+                        play: true,
+                        musics: [
+                            ...musics.slice(0, idx),
+                            element,
+                            ...musics.slice(idx + 1)
+                        ]
+                    })
                     break;
                 case './musics/hans-zimmer_-_time.mp3':
                     await this.playObject.loadAsync(require('./musics/hans-zimmer_-_time.mp3'));
                     await this.playObject.playAsync();
-                    this.setState({play: true})
+                    element.play = true;
+                    this.setState({
+                        play: true,
+                        musics: [
+                            ...musics.slice(0, idx),
+                            element,
+                            ...musics.slice(idx + 1)
+                        ]
+                    })
                     break;
                 case './musics/hans-zimmer-james-newton-howard_-_a-dark-knight.mp3':
                     await this.playObject.loadAsync(require('./musics/hans-zimmer-james-newton-howard_-_a-dark-knight.mp3'));
                     await this.playObject.playAsync();
-                    this.setState({play: true})
+                    element.play = true;
+                    this.setState({
+                        play: true,
+                        musics: [
+                            ...musics.slice(0, idx),
+                            element,
+                            ...musics.slice(idx + 1)
+                        ]
+                    })
                     break;
                 case './musics/eminem_-_lose-yourself-from-8-mile-soundtrack.mp3':
                     await this.playObject.loadAsync(require('./musics/eminem_-_lose-yourself-from-8-mile-soundtrack.mp3'));
                     await this.playObject.playAsync();
-                    this.setState({play: true})
+                    element.play = true;
+                    this.setState({
+                        play: true,
+                        musics: [
+                            ...musics.slice(0, idx),
+                            element,
+                            ...musics.slice(idx + 1)
+                        ]
+                    })
+                    break;
+                case './musics/skylar-grey_-_words.mp3':
+                    await this.playObject.loadAsync(require('./musics/skylar-grey_-_words.mp3'));
+                    await this.playObject.playAsync();
+                    element.play = true;
+                    this.setState({
+                        play: true,
+                        musics: [
+                            ...musics.slice(0, idx),
+                            element,
+                            ...musics.slice(idx + 1)
+                        ]
+                    })
                     break;
                 default: return;
             }
-        }
         
         
         // await Audio.Sound.createAsync(require('./musics/natan_-_nalivay.mp3'), { shouldPlaye: true });
@@ -77,12 +136,20 @@ export default class Musics extends React.Component {
 
     }
 
-    onSearchMusics() {
+    onSearchMusics(text) {
+        let newArray = [];
+        for(let i in musicsApi) {
+            if(musicsApi[i].title.toUpperCase().indexOf(text.toUpperCase()) !== -1) {
+                newArray.push(musicsApi[i]);
+            }
+        }
 
+        this.setState({musics: newArray, loadingMusics: false})
     }
 
     onChangeSearch = (text) => {
-        this.setState({searchText: text})
+        this.setState({searchText: text, loadingMusics: true})
+        this.onSearchMusics(text);
     }
 
     render() {
@@ -95,13 +162,16 @@ export default class Musics extends React.Component {
                     onPress={() => navigation.openDrawer()}
                     leftIcon='ios-menu'
                     leftColor={'white'}
-                    // searchBarButton={true}
+                    searchBar={true}
                     onChange={this.onChangeSearch}
                     textValue={this.state.searchText}
-                    submitSearch={this.onSearchMusics}
                     onClear={this.onClear}
                 />
-                <MusicCard musics={this.state.musics} onPlay={this.playMusic} />
+                {
+                    this.state.loadingMusics ? <Spinner />
+                    :
+                    <MusicCard musics={this.state.musics} onPlay={this.playMusic} />
+                }
             </View>
         )
     }

@@ -38,7 +38,7 @@ export default createAppContainer(createDrawerNavigator(
     }
   },
   {
-    initialRouteName: "Screen1",
+    initialRouteName: "Screen3",
     drawerBackgroundColor: '#0070c0',
     contentOptions: {
       activeBackgroundColor: '#0095ff',

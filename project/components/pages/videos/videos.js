@@ -4,6 +4,7 @@ import { HeaderProject } from '../../ui-elements/header';
 import { CardComponent } from '../../ui-elements/cards';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Spinner from '../../spinner';
+import ErrorMessage from '../../errro-message';
 import youtube from './api';
 
 const w = Dimensions.get('window').width;
@@ -47,17 +48,26 @@ export default class Videos extends React.Component {
         selectedVideo: {},
         videos: [],
         loadingVideos: true,
-        searchText: ''
+        searchText: '',
+        error: false
     }
 
     componentDidMount = async () => {
-        const data = await youtube.get('/search', {
-            params: {
-                q: 'cars'
+        try {
+            const data = await youtube.get('/search', {
+                params: {
+                    q: 'cars'
+                }
+            })
+            
+            if(data) {
+                this.setState({videos: data.data.items, loadingVideos: false, error: false})
+            } else {
+                this.setState({error: true, loadingVideos: false})
             }
-        })
-        
-        this.setState({videos: data.data.items, loadingVideos: false})
+        } catch(err) {
+            this.setState({error: true, loadingVideos: false})
+        }
     }
 
     onCloseModal = () => {
@@ -73,13 +83,17 @@ export default class Videos extends React.Component {
     }
 
     onSearchVideos = async () => {
-        const data = await youtube.get('/search', {
-            params: {
-                q: this.state.searchText
-            }
-        })
-
-        this.setState({videos: data.data.items, loadingVideos: false})
+        try {
+            const data = await youtube.get('/search', {
+                params: {
+                    q: this.state.searchText
+                }
+            })
+    
+            this.setState({videos: data.data.items, loadingVideos: false})
+        } catch(err) {
+            this.setState({error: true, loadingVideos: false})
+        }
     }
 
     onClear = () => {
@@ -109,6 +123,8 @@ export default class Videos extends React.Component {
                         {
                             this.state.loadingVideos ? <Spinner />
                             :
+                            this.state.error ? <ErrorMessage text="Извините Youtube отказался выдавать видео" />
+                            :
                             <CardComponent onOpenModal={this.onOpenModal} videos={this.state.videos} />
                             
                         }
@@ -134,7 +150,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.6)'
     },
     container_content: {
-        paddingTop: 20
+        paddingTop: 20,
+        height: 'auto'
     },
     modal: {
         height: w * 0.70,
