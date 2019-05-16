@@ -6,6 +6,8 @@ import { Audio } from 'expo';
 import { MusicCard } from '../../ui-elements/cards';
 import musicsApi from './music';
 
+import ErrorBoundry from '../../error-boundry';
+
 
 // const SoundPlayer = require('react-native-sound');
 // let sound = null;
@@ -15,7 +17,8 @@ export default class Musics extends React.Component {
 
     state = {
         musics: [],
-        play: false
+        play: false,
+        error: false
     }
 
 
@@ -162,7 +165,11 @@ export default class Musics extends React.Component {
     }
 
     componentDidMount = async () => {
-        this.setState({ musics: musicsApi });
+        try {
+            this.setState({ musics: musicsApi });
+        } catch(err) {
+            this.setState({ error: true });
+        }
     }
 
     state = {
@@ -193,6 +200,9 @@ export default class Musics extends React.Component {
 
     render() {
         const { navigation } = this.props;
+        if(this.state.error) {
+            return <ErrorBoundry />
+        }
         return(
             <View>
                 <HeaderProject 

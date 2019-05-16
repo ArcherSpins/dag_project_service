@@ -4,7 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Videos from './components/pages/videos'
 import Books from './components/pages/books'
 import Musics from './components/pages/musics'
-
+import Images from './components/pages/images'
 
 
 export default createAppContainer(createDrawerNavigator(
@@ -33,6 +33,15 @@ export default createAppContainer(createDrawerNavigator(
         drawerLabel: 'Musics',
         drawerIcon: ({ tintColor }) => (
           <MaterialIcons name="music-note" size={24} style={{ color: tintColor }} />
+        )
+      }
+    },
+    "Screen4": {
+      screen: Images,
+      navigationOptions: {
+        drawerLabel: 'Images',
+        drawerIcon: ({ tintColor }) => (
+          <MaterialIcons name="image" size={24} style={{ color: tintColor }} />
         )
       }
     }

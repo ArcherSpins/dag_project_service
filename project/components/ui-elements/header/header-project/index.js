@@ -21,7 +21,6 @@ const HeaderProject = ({
 }) => {
 
 const { viewStyle, textStyle, leftButtonStyle } = styles
-
 return (
   <View>
     <View style={[viewStyle, {backgroundColor: headerColor }]}>

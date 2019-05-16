@@ -4,6 +4,7 @@ import { HeaderProject } from '../../ui-elements/header';
 import { Layout } from '../../ui-elements/loyout';
 import { ImageCard } from '../../ui-elements/cards';
 import Spinner from '../../spinner';
+import ErrorBoundry from '../../error-boundry';
  
 
 const url = 'https://api.tvmaze.com/search/shows?q=';
@@ -14,7 +15,8 @@ export default class Books extends React.Component {
         title: 'Books',
         data: [],
         searchText: 'batman',
-        loading: true
+        loading: true,
+        error: false
     }
 
     componentDidMount = async () => {
@@ -23,7 +25,7 @@ export default class Books extends React.Component {
           const data = await response.json()
           this.setState({ data: data, loading: false })
         } catch (e) {
-          throw e
+            this.setState({ error: true, loading: false })
         }
     }
 
@@ -37,7 +39,7 @@ export default class Books extends React.Component {
             const data = await response.json()
             this.setState({ data: data, loading: false })
           } catch (e) {
-            throw e
+            this.setState({ error: true, loading: false })
         }
     }
 
@@ -53,6 +55,9 @@ export default class Books extends React.Component {
     render() {
         const { title, data } = this.state;
         const { navigation } = this.props;
+        if(this.state.error) {
+            return <ErrorBoundry />
+        }
         return(
             <View>
                 <HeaderProject 
