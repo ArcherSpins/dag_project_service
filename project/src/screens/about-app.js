@@ -1,16 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View,  ScrollView } from 'react-native';
-import { Header } from '../ui-elements';
+import Header from '../header';
 
 class AppScreen extends React.Component {
-    static navigationOptions = {
-        tabBarVisible: false,
-    }
 
   render() {
     return (
       <View style={styles.container}>
-        <Header navigate={this.props.navigation.navigate} activeScreen="Personal" />
+        <Header title="О приложении" />
         <Text style={styles.h1}>Заголовок</Text>
         <ScrollView>
             <Text style={styles.parag}>

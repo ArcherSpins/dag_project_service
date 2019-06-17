@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, ActivityIndicator } from 'react-native';
-import { Header, CategoriesList } from '../ui-elements';
+import { CategoriesList } from '../ui-elements';
+import Header from '../header';
 
 
 class CategoriesScreen extends React.Component {
@@ -28,7 +29,8 @@ class CategoriesScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header navigate={this.props.navigation.navigate} activeScreen="Personal" />
+
+                <Header title="Категории" />
                 <ScrollView>
                     {
                         this.state.loading ?
@@ -46,7 +48,8 @@ class CategoriesScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#f4f4f4'
   },
 });
 

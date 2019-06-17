@@ -1,17 +1,20 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
 
-export default ({ personal }) => {
+export default ({ personal, navigate, path = 'Details_screen', path2 }) => {
     return(
         <View style={{width: '100%'}}>
             {
                 personal.map((pers, i) => {
                     return(
-                        <View key={pers.id} style={styles.item}>
-                            <Image source={{uri: pers.img}}
-                                    style={styles.image} />
-                            <Text style={styles.text} >{ pers.title }</Text>
-                        </View>
+                        <TouchableHighlight underlayColor="#d4d3d3" key={i} onPress={() => navigate(path, ({ id: pers.id, path2 }))} >
+                            <View style={styles.item}>
+                                <Image source={{uri: pers.img}}
+                                        style={styles.image} />
+
+                                <Text style={styles.text} >{ pers.title }</Text>
+                            </View>
+                        </TouchableHighlight>
                     )
                 })
             }
@@ -24,19 +27,20 @@ export default ({ personal }) => {
 const styles = StyleSheet.create({
     item: {
         width: '100%',
-        borderBottomWidth: 1,
-        borderColor: 'black',
-        flexDirection: 'row'
+        padding: 15,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     image: {
-        width: '25%',
-        height: 80
+        width: '27%',
+        height: 80,
+        borderRadius: 7
     },
     text: {
         paddingVertical: 10,
         display: 'flex',
         alignItems: "center",
-        paddingLeft: 10,
+        paddingLeft: 15,
         fontSize: 17
     }
 })
