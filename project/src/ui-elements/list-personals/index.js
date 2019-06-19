@@ -29,12 +29,14 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 15,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingBottom: 6
     },
     image: {
         width: '27%',
-        height: 80,
-        borderRadius: 7
+        height: 100,
+        borderWidth: 1,
+        borderColor: 'black'
     },
     text: {
         paddingVertical: 10,

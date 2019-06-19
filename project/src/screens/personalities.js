@@ -20,6 +20,11 @@ const defaultData = {
 
 class PersonalScreen extends React.Component {
 
+    static navigationOptions = {
+        title: 'Welcome',
+        tabBarLabel: 'Home!',
+      };
+
     state = {
         searchText: '',
         personal: [],
@@ -80,7 +85,7 @@ class PersonalScreen extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Header title="Личности" button={true}
+                <Header title="личности" button={true}
                     searchBar={true} textValue={this.state.searchText} onChange={this.onChangeSearch} submitSearch={this.submitSearch} onClear={this.onClear} />
                 <ScrollView style={{backgroundColor: '#efefef'}}>
                     {

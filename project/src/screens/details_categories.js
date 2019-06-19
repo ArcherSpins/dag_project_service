@@ -37,7 +37,7 @@ export default class ScreenDetails extends React.Component {
                 <View style={styles.header}>
                     <TouchableOpacity style={{marginTop: 20, paddingLeft: 20, width: 200, flexDirection: 'row', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Categories_screen')}>
                         <Ionicons name="ios-arrow-back" color="white" size={30} style={{marginTop: 2}} />
-                        <Text style={{color: 'white', marginLeft: 10, minWidth: 130, fontSize: 23, alignSelf: 'center'}}>Назад</Text>
+                        <Text style={{color: 'white', marginLeft: 10, minWidth: 130, fontSize: 23, alignSelf: 'center'}}>назад</Text>
                     </TouchableOpacity>
                 </View>
                 {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     header: {
         height: 80,
         width: '100%',
-        backgroundColor: '#FD4D01',
+        backgroundColor: '#117ac7',
         display: 'flex',
         justifyContent: 'center'
     },
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#f4f4f4'
     },
     content: {
         paddingLeft: 20,

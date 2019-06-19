@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View,  ScrollView } from 'react-native';
+import { StyleSheet, Text, View,  ScrollView, Image, Dimensions } from 'react-native';
 import Header from '../header';
 
 class AppScreen extends React.Component {
@@ -7,17 +7,17 @@ class AppScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header title="О приложении" />
-        <Text style={styles.h1}>Заголовок</Text>
-        <ScrollView>
-            <Text style={styles.parag}>
-                Аполлон (др.-греч. Ἀπόλλων, лат. Apollo) — в древнегреческой и древнеримской мифологиях
-                 златокудрый сребролукий бог света (отсюда его прозвище Феб — «лучезарный», «сияющий»),
-                 покровитель искусств, предводитель и покровитель муз, предсказатель будущего,
-                бог-врачеватель, покровитель переселенцев, олицетворение мужской красоты. Один из наиболее почитаемых античных богов.
-                В период поздней Античности олицетворяет Солнце.
-            </Text>
-        </ScrollView>
+        <Header title="о приложении" />
+        <View style={styles.content}>
+            <Image source={require('../icons/icon.png')} style={styles.image} />
+            <Text style={{fontSize: 18, paddingVertical: 4}}>Приложение разработано</Text>
+            <Text style={{fontSize: 18, paddingVertical: 4, color: '#117ac7'}}>KaspSoft Ltd</Text>
+            <Text style={{fontSize: 18, paddingVertical: 8, marginTop: 25}}>Дизайнер: Simvoliuss</Text>
+            <Text style={{fontSize: 18, paddingVertical: 4}}>Заказчик: Эмран</Text>
+        </View>
+        <View>
+            <Text style={{textAlign: 'center', fontSize: 20, paddingVertical: 20}}>2019 г.</Text>
+        </View>
       </View>
     );
   }
@@ -25,18 +25,24 @@ class AppScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#f4f4f4'
   },
   h1: {
     fontSize: 27,
     textAlign: 'center',
     paddingVertical: 10
   },
-  parag: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    fontSize: 20
-  }
+  image: {
+    width: Dimensions.get('window').width / 5 - 15,
+    height: Dimensions.get('window').width / 5 - 15,
+    marginBottom: 5
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 });
 
 

@@ -77,7 +77,7 @@ export default class ScreenPersonals extends React.Component {
                 <View style={styles.header}>
                     <TouchableOpacity style={{marginTop: 20, paddingLeft: 20, width: 200, flexDirection: 'row', alignItems: 'center'}} onPress={() => this.props.navigation.navigate(path2)}>
                         <Ionicons name="ios-arrow-back" color="white" size={30} style={{marginTop: 2}} />
-                        <Text style={{color: 'white', marginLeft: 10, minWidth: 130, fontSize: 23, alignSelf: 'center'}}>Назад</Text>
+                        <Text style={{color: 'white', marginLeft: 10, minWidth: 130, fontSize: 23, alignSelf: 'center'}}>назад</Text>
                     </TouchableOpacity>
                 </View>
                 {
@@ -87,21 +87,22 @@ export default class ScreenPersonals extends React.Component {
                     </View>
                     :
                     <ScrollView>
-                        <View style={{paddingBottom: 20}}>
-                            <Text style={styles.h1}>{ data.title }</Text>
+                        <View style={{paddingBottom: 20, paddingTop: 30}}>
                             <View style={styles.container_image}>
                                 <Image source={{uri: url}} style={styles.image} />
                             </View>
-                            {
-                                data.audio_files ?
-                                 <View style={{width: '100%', display: 'flex', alignItems: 'center', marginTop: 20}}>
-                                    <TouchableOpacity onPress={() => this.playMusic()} style={styles.audio_button}>
-                                        <Ionicons name={icon} style={{fontSize: 42}} color="black" />
-                                    </TouchableOpacity>
-                                    <Text style={styles.title_music}>{data.audio_files[0].title}</Text>
-                                 </View>
-                                : null
-                            }
+                            <Text style={styles.h1}>{ data.title }</Text>
+                            <View>
+                                {
+                                    data.audio_files ?
+                                     <View style={{width: '100%', display: 'flex', alignItems: 'center', marginTop: 20}}>
+                                        <TouchableOpacity onPress={() => this.playMusic()} style={styles.audio_button}>
+                                            <Ionicons name={icon} style={{fontSize: 42}} color="white" />
+                                        </TouchableOpacity>
+                                     </View>
+                                    : null
+                                }
+                            </View>
                             <Text style={styles.content}>{ data.content }</Text>
                         </View>
                     </ScrollView>
@@ -115,11 +116,12 @@ export default class ScreenPersonals extends React.Component {
 
 const styles = StyleSheet.create({
     header: {
-        height: 80,
         width: '100%',
-        backgroundColor: '#FD4D01',
+        backgroundColor: '#117ac7',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingTop: 20,
+        paddingBottom: 10
     },
     title_music: {
         textAlign: 'center',
@@ -128,26 +130,27 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#f4f4f4'
     },
     content: {
         paddingLeft: 20,
         paddingRight: 20,
-        marginTop: 10,
-        fontSize: 20
+        fontSize: 18
     },
     audio_button: {
-        width: 80,
-        height: 80,
+        width: 70,
+        height: 70,
         borderRadius: 50,
         display: 'flex',
         justifyContent: 'center',
+        paddingLeft: 6,
         alignItems: 'center',
-        backgroundColor: 'gray'
+        backgroundColor: '#117ac7'
     },
     image: {
-        width: w*0.8,
-        height: w*0.9
+        width: w*0.6,
+        height: w*0.6
     },
     container_image: {
         width: '100%',

@@ -14,10 +14,10 @@ export default ({ title }) => {
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: "#FD4D01",
+        backgroundColor: "#117ac7",
         width: '100%',
         paddingVertical: 10,
-        paddingTop: 30
+        paddingTop: 40
     },
     title: {
         color: 'white',
